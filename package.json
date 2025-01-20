@@ -1,0 +1,30 @@
+{
+  "name": "nodecachedemo",
+  "version": "1.0.0",
+  "description": "A demo of using key value caches in NodeJs",
+  "main": "index.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlitzkriegSoftware/nodecachedemo.git"
+  },
+  "keywords": [
+    "Node",
+    "Cache"
+  ],
+  "author": "Stuart Williams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlitzkriegSoftware/nodecachedemo/issues"
+  },
+  "homepage": "https://github.com/BlitzkriegSoftware/nodecachedemo#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdoc": "^4.0.4"
+  },
+  "dependencies": {
+    "redis": "^4.7.0"
+  }
+}
