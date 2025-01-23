@@ -9,3 +9,4 @@
 ## Reference
 
 - https://github.com/redis/node-redis/tree/master/packages/redis
+- Expiration of Keys: https://redis.io/docs/latest/commands/set/#:~:text=EX%20seconds%20%2D%2D%20Set%20the,milliseconds%20(a%20positive%20integer).
