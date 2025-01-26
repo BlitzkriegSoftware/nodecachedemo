@@ -25,9 +25,9 @@ afterAll(async () => {
 
 /**
  * Get Cache Options
- * @interface GetCacheOptions
+ * @interface DemoCreateClientOptions
  */
-interface GetCacheOptions {
+interface DemoCreateClientOptions {
   name: string;
   dbIndex: number;
   redisUrl: string;
@@ -35,24 +35,26 @@ interface GetCacheOptions {
 
 /**
  * Default Get Cache Options
- * @type GetCacheOptions
+ * @type defaultDemoCreateClientOptions
  * @constant
  * @description name: "default", dbIndex: 0, redisUrl: "redis://localhost:6379"
  */
-const defaultGetCacheOptions: GetCacheOptions = {
+const defaultDemoCreateClientOptions: DemoCreateClientOptions = {
   name: "default",
   dbIndex: 0,
   redisUrl: "redis://localhost:6379",
 };
 
 /**
- * Get Cache Connection
+ * Get Cache Connection, please call .quit() on the client when done
  * @param options - GetCacheOptions
  * @returns Promise<RedisClientType>
  */
-async function getCache(options?: GetCacheOptions): Promise<RedisClientType> {
+async function getCache(
+  options?: DemoCreateClientOptions
+): Promise<RedisClientType> {
   if (!options) {
-    options = defaultGetCacheOptions;
+    options = defaultDemoCreateClientOptions;
   }
 
   if (!isReady) {
@@ -86,7 +88,7 @@ describe("Connectivity Stuff", () => {
 
 describe("Key Pairs", () => {
   test("key write/read (1)", async () => {
-    const client = await getCache(defaultGetCacheOptions);
+    const client = await getCache(defaultDemoCreateClientOptions);
 
     const key: string = "key1";
     const value: string = "value1";
@@ -105,15 +107,17 @@ describe("Key Pairs", () => {
   });
 
   test("key write/read (2)", async () => {
-    const myOptions: GetCacheOptions = defaultGetCacheOptions;
+    // Custom Options from default
+    const myOptions: DemoCreateClientOptions = defaultDemoCreateClientOptions;
     myOptions.name = "test2";
+    myOptions.dbIndex = 3;
 
     const client = await getCache(myOptions);
 
     const key: string = "key2";
     const value: string = "value2";
 
-    const expirationMinutes: number = 30;
+    const expirationMinutes: number = 5;
     const expirationSeconds: number = expirationMinutes * 60;
 
     // Absolue expiration time in seconds
@@ -121,6 +125,7 @@ describe("Key Pairs", () => {
       EX: expirationSeconds,
     };
 
+    // Best Practice: Explictly set options, especially expiration
     await client.set(key, value, setOptions);
     const v2 = await client.get(key);
     expect(v2).toBe(value);
