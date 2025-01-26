@@ -1,6 +1,6 @@
 # nodecachedemo
 
-A demo of using Valkey-or-Redis in NodeJs along with some best practices, see comments.
+A demo of using Valkey-or-Redis in NodeJs along with some best practices, see comments `/** */`.
 
 ## Start valkey - Docker
 
