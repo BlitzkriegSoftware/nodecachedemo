@@ -77,6 +77,9 @@ async function getCache(
   return redisClient;
 }
 
+/**
+ * Connectivity tests
+ */
 describe("Connectivity Stuff", () => {
   test("Open-Ready", async () => {
     const client = await getCache();
@@ -86,6 +89,9 @@ describe("Connectivity Stuff", () => {
   });
 });
 
+/**
+ * Key Pair tests
+ */
 describe("Key Pairs", () => {
   test("key write/read (1)", async () => {
     const client = await getCache(defaultDemoCreateClientOptions);
@@ -131,25 +137,3 @@ describe("Key Pairs", () => {
     expect(v2).toBe(value);
   });
 });
-
-/* describe("", () => {
-  test("", async () => {
-    const client = await getCache();
-    try {
-    } finally {
-      if (null != client) {
-        client.quit();
-      }
-    }
-  });
-
-  test("", async () => {
-    const client = await getCache();
-    try {
-    } finally {
-      if (null != client) {
-        client.quit();
-      }
-    }
-  });
-}); */

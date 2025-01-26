@@ -35,6 +35,7 @@
     "typescript-eslint": "^8.21.0"
   },
   "dependencies": {
+    "clean-jsdoc-theme": "^4.3.0",
     "redis": "^4.7.0"
   }
 }

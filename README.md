@@ -1,19 +1,25 @@
 # nodecachedemo
 
+A demo of using Valkey-or-Redis in NodeJs along with some best practices, see comments.
+
 ## Start valkey - Docker
 
 1. Make sure docker is running
 
-2. run `scripts\valkey_start.ps1`
+2. run `scripts\d_valkey_start.ps1`
 
    - [valkey](https://github.com/valkey-io/valkey) is open source REDIS
    - Code will run with either valkey or redis
 
 ## Start valkey - podman
 
+1. Make sure podman is running
+
+2. run `scripts\p_valkey_start.ps1`
+
 # Demo
 
-Run jest tests too see demo at work
+Run jest tests to see demo at work
 
 - Command line `jest`
 - In VSCODE with [Jest Runner](https://open-vsx.org/extension/firsttris/vscode-jest-runner), editor will have run and debug added to tests inside the main file `index.test.ts`

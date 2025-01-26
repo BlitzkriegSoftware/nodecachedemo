@@ -1,3 +1,10 @@
+# jsdoc
+out/
+docs/
+
+# SonarQube
+.scanner
+
 # Logs
 logs
 *.log

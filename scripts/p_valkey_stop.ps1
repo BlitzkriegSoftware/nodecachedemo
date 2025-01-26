@@ -1,11 +1,15 @@
 <#
-	Stop valkey
+	Stop valkey  - Podman
 #>
-function Test-DockerIsRunning {
+function Test-PodmanIsRunning {
   $isOk = 0;
   Try {
-    Get-Process 'com.docker.backend' -ErrorAction Stop;
-    $isOk = 1;
+    $podinfo = $(podman machine inspect) | ConvertFrom-Json;
+    if($podinfo.State -ne "Running") {
+      $isOk = 0;
+    } else {
+      $isOk = 1;
+    }
   }
   Catch {
     $isOk = 0;
@@ -13,12 +17,12 @@ function Test-DockerIsRunning {
   return $isOk;
 }
 
-$isrunning = Test-DockerIsRunning;
+$isrunning = Test-PodmanIsRunning;
 if(-not $isrunning) {
-  Write-Output "Docker must be running";
+  Write-Output "Podman must be running";
   return;
 }
 
 $valkeyNAME="d-valkey"
-docker stop "${valkeyNAME}" 2>&1 | out-null
-docker rm "${valkeyNAME}" 2>&1 | out-null
+podman stop "${valkeyNAME}" 2>&1 | out-null
+podman rm "${valkeyNAME}" 2>&1 | out-null

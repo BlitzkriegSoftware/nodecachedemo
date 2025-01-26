@@ -1,5 +1,5 @@
 <#
-	Start valkey
+	Start valkey - Docker
 #>
 function Test-DockerIsRunning {
   $isOk = 0;
