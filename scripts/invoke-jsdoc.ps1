@@ -23,7 +23,7 @@ jsdoc -c ./jsdoc.json ./package.json -R ./README.md
 [string]$tempPath = [System.IO.Path]::GetTempPath();
 $tempPath = Join-Path -Path $tempPath -ChildPath 'jsdoc/'
 if (-not [System.IO.Directory]::Exists($tempPath)) {
-    $noop = New-Item -Path $tempPath -ItemType Directory -Force
+    $null = New-Item -Path $tempPath -ItemType Directory -Force
 } 
 
 # Clean up docs/ folder
